@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>jak znáš konstanty</title>
+</head>
+
+<body>
+
+    <form action="{{ url_for('konstanty') }}" method="POST">
+        <h1>{{ napis }}</h1>
+        <p>pokud chceš, můžeš mi sdělit i svoje jméno, ale samozřejmě můžeš vystupovat anonymě</p>
+        <p><input id="jmeno" class="input" type="text" name="jmeno" value="{{ placeholderJmeno }}" /></p>
+
+        <h2>Na kolik desetiných míst znáš π?</h2>
+        <p>
+            <button class="btnNumber" onclick="decrementValue('pi')">-</button>
+            <input id="pi" class="input" type="number" name="znalost_PI" value="{{ placeholderPI }}" />
+            <button class="btnNumber" onclick="incrementValue('pi')">+</button>
+        </p>
+        <p><input class="btnCislo" name="BtnPi" type="submit" value="ukázat hodnotu"></p>
+        <p>to znamená, že si pamatuješ:</p>
+        <p>{{ PI_naXmist }}</p>
+
+
+        <h2>Na kolik desetiných míst znáš e?</h2>
+        <p>
+            <button class="btnNumber" onclick="decrementValue('e')">-</button>
+            <input id="e" class="input" type="number" name="znalost_E" value="{{ placeholderE }}" />
+            <button class="btnNumber" onclick="incrementValue('e')">+</button>
+        </p>
+        <p><input class="btnCislo" name="BtnE" type="submit" value="ukázat hodnotu"></p>
+
+        <p>to znamená, že si pamatuješ:</p>
+        <p>{{ E_naXmist }}</p>
+
+
+        <h2>Na kolik desetiných míst znáš zlatý řez (ϕ)?</h2>
+        <p>
+            <button class="btnNumber" onclick="decrementValue('fi')">-</button>
+            <input id="fi" class="input" type="number" name="znalost_FI" value="{{ placeholderFI }}" />
+            <button class="btnNumber" onclick="incrementValue('fi')">+</button>
+        </p>
+        <p><input class="btnCislo" name="BtnFi" type="submit" value="ukázat hodnotu"></p>
+
+        <p>to znamená, že si pamatuješ:</p>
+        <p>{{ FI_naXmist }}</p>
+    </form>
+
+    <p style="font-size: 5px; margin-top: 20px;">tvoje IP je {{ tvojeIP }}</p>
+
+    <script>
+        function decrementValue(inputElementId) {
+            const inputElement = document.getElementById(inputElementId);
+            let currentValue = parseInt(inputElement.value);
+            currentValue--;
+            inputElement.value = currentValue;
+        }
+
+        function incrementValue(inputElementId) {
+            const inputElement = document.getElementById(inputElementId);
+            let currentValue = parseInt(inputElement.value);
+            currentValue++;
+            inputElement.value = currentValue;
+        }
+    </script>
+</body>
+<footer>
+    <form action="{{ url_for('submit') }}" method="POST">
+        <p class="odeslat"><input class="btn" type="submit" value="odeslat"></p>
+    </form>
+</footer>
+
+</html>
