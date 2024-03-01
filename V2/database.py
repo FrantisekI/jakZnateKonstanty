@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 
 def conectToDB(reset=False):
-    load_dotenv()
+    #load_dotenv()
     conn = mysql.connector.connect(
         db="konstanty",
         host=os.getenv('HOST'),
