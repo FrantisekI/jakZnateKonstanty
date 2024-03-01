@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 
 def conectToDB(reset=False):
     print('connecting to db')
-    load_dotenv()
     timeout = 10
     conn = mysql.connector.connect(
         charset="utf8mb4",
