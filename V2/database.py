@@ -28,10 +28,10 @@ def conectToDB(reset=False):
         conn.commit()
     
 
-    MeinCursor.execute("CREATE DATABASE IF NOT EXISTS konstanty.konstanty;")
+    MeinCursor.execute("CREATE DATABASE IF NOT EXISTS konstanty;")
     MeinCursor.execute(
         """
-        CREATE TABLE IF NOT EXISTS konstantyTable (
+        CREATE TABLE IF NOT EXISTS konstanty.konstantyTable (
             id INT AUTO_INCREMENT PRIMARY KEY, 
             cas VARCHAR(19), 
             jmeno VARCHAR(255), 
