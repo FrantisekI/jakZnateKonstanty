@@ -16,8 +16,8 @@ def conectToDB(reset=False):
         charset="utf8mb4",
         connect_timeout=timeout,
         db="konstanty",
-        host='fdsaf.a.aivencloud.com',
-        password=password,
+        host=host,
+        password='uiuobiob',
         port=22681,
         user="avnadmin"        
     )
