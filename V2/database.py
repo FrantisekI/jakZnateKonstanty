@@ -7,27 +7,29 @@ from dotenv import load_dotenv
 
 
 def conectToDB(reset=False):
-    host = os.environ['HOST_FRAN']
-    password = os.environ['PASSWORD_FRAN']
-    
+    print('connecting to db')
+    load_dotenv()
     timeout = 10
-    
     conn = mysql.connector.connect(
         charset="utf8mb4",
         connect_timeout=timeout,
         db="konstanty",
-        host=host,
-        password=password,
+        host=os.environ['HOST_FRAN'],
+        password=os.environ['PASSWORD_FRAN'],
         port=22681,
-        user="avnadmin"        
+        user="avnadmin",
     )
-    print(HEYY)
-    
+
 
 
     MeinCursor = conn.cursor()
 
+    if reset:
+        MeinCursor.execute("DROP DATABASE IF EXISTS konstanty;")
+        conn.commit()
+    
 
+    MeinCursor.execute("CREATE DATABASE IF NOT EXISTS konstanty;")
     MeinCursor.execute(
         """
         CREATE TABLE IF NOT EXISTS konstanty.konstantyTable (
@@ -40,12 +42,7 @@ def conectToDB(reset=False):
             IP VARCHAR(255)
             );
             """)
-    MeinCursor.execute("""
-        INSERT INTO konstantyTable (cas, jmeno, znalost_PI, znalost_E, znalost_FI, IP)
-        VALUES
-            ('2021-01-01 00:00:00', 'jmeno', 1, 2, 3, 'IP');
-        
-    """)
+
     conn.commit()
     return conn, MeinCursor
 
@@ -75,7 +72,3 @@ if __name__ == "__main__":
     
     #addRow(MeinCursor, conn, 'jmeno', 1, 2, 3, 'IP')
     getRows(MeinCursor)
-
-
-
-
