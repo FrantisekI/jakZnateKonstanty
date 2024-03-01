@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    
+
 
     <form action="{{ url_for('konstanty') }}" method="POST">
         <h1>{{ napis }}</h1>
@@ -48,25 +48,6 @@
         <p>{{ FI_naXmist }}</p>
     </form>
 
-
-
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    </script>
-    <script>
-        /* Add "https://api.ipify.org?format=json" to 
-        get the IP Address of user*/
-        $(document).ready(() => {
-            $.getJSON("https://api.ipify.org?format=json",
-                function (data) {
-
-                    // Displayin IP address on screen
-                    $("#gfg").html(data.ip);
-                })
-        });
-    </script>
-    <p id="gfg">{{ tvojeIPinput }}</p>-->
-    <p id="ip">dalsi {{ tvojeIP }}</p>
-
     <script>
         function decrementValue(inputElementId) {
             const inputElement = document.getElementById(inputElementId);
@@ -82,10 +63,44 @@
             inputElement.value = currentValue;
         }
     </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script>
+        /* Add "https://api.ipify.org?format=json" to 
+        get the IP Address of user*/
+        $(document).ready(() => {
+            $.getJSON("https://api.ipify.org?format=json",
+                function (data) {
+
+                    // Displayin IP address on screen
+                    //$("#gfg").html(data.ip);
+
+                    const ip = data.ip;
+                    const url = `/api/ip?${ip}`;
+                    fetch(url, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ ip }),
+                    })
+                        .then((r) => r.json()).catch((error) => {
+                            console.error("Error sending IP address:", error);
+                            // Handle the error here, e.g., display an error message to the user
+                        });
+                })
+        });
+
+    </script>
+
+    <p id="ip">tvá IP jest {{ tvojeIP }}</p>
 </body>
 <footer>
     <form action="{{ url_for('submit') }}" method="POST">
         <p class="odeslat"><input class="btn" type="submit" value="odeslat"></p>
+
+
     </form>
 </footer>
 

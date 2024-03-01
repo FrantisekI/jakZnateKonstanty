@@ -1,13 +1,17 @@
-from flask import Flask, render_template, url_for, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from requests import get
-import json
-import datetime
 from database import conectToDB, addRow, getRows
+
+
+
+
+
 
 
 GpiNaCoZna = GPlaceholder_Pi = GeNaCoZna = GPlaceholder_E = GfiNaCoZna = GPlaceholder_Fi = 0
 Gjmeno = 'Anonym'
 Gconn, GMeinCursor = conectToDB()
+Gip = 'idk'
 
 
 app = Flask(__name__)
@@ -44,7 +48,7 @@ def konstanty(jakSeJmenuje='Anonym', Placeholder_Pi=0, piNaCoZna='3,', Placehold
 
             
     return render_template("konstanty.html", napis='Vítej, mohl bych tě poprosit o vyplnění následujícího "dotazníku"?',
-                           placeholderJmeno=jakSeJmenuje, tvojeIP=get_ip(), 
+                           placeholderJmeno=jakSeJmenuje, tvojeIP=request.form.get('gfg'), 
                            placeholderPI=Placeholder_Pi, PI_naXmist=piNaCoZna, 
                            placeholderE=Placeholder_E, E_naXmist=eNaCoZna, 
                            placeholderFI=Placeholder_Fi, FI_naXmist=fiNaCoZna)
@@ -95,25 +99,44 @@ def get_ip():
 
 @app.route("/submit", methods=['POST'])
 def submit():
-    global GpiNaCoZna, GPlaceholder_Pi, GeNaCoZna, GPlaceholder_E, GfiNaCoZna, GPlaceholder_Fi, Gjmeno, Gconn, GMeinCursor
-    addRow(GMeinCursor, Gconn, Gjmeno, GPlaceholder_Pi, GPlaceholder_E, GPlaceholder_Fi, get_ip())
+    global GpiNaCoZna, GPlaceholder_Pi, GeNaCoZna, GPlaceholder_E, GfiNaCoZna, GPlaceholder_Fi, Gjmeno, Gconn, GMeinCursor, Gip
+    addRow(GMeinCursor, Gconn, Gjmeno, GPlaceholder_Pi, GPlaceholder_E, GPlaceholder_Fi, Gip)
 
     #print(getRows(GMeinCursor))
 
+    
+
     return render_template("konstanty.html", napis='Děkuji za vyplnění dotazníku!',
-                           placeholderJmeno=Gjmeno, tvojeIP=get_ip(), 
+                           placeholderJmeno=Gjmeno, tvojeIP=Gip, 
                            placeholderPI=GPlaceholder_Pi, PI_naXmist=GpiNaCoZna, 
                            placeholderE=GPlaceholder_E, E_naXmist=GeNaCoZna, 
                            placeholderFI=GPlaceholder_Fi, FI_naXmist=GfiNaCoZna)
 
 
+@app.route('/api/ip', methods=['POST'])
+def handleIP():
+    global Gip
+    if request.method == 'POST':
 
+        data = request.get_json()
+        
+        # Access the username and email parameters sent from the frontend
+        ip = data.get('ip')
+        Gip = ip
+        
+        # Perform any necessary backend processing with the received data
+        response_data = {
+            'message': 'Data received successfully!',
+            'ip': ip,
+        }
+        
+        return jsonify(response_data)
 
 
 
 if __name__ == '__main__':
-    #from waitress import serve
-    #serve(app, host="0.0.0.0", port=8080)
-    app.run(debug=True, host='0.0.0.0')
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
+    #app.run(debug=True, host='0.0.0.0')
     
 

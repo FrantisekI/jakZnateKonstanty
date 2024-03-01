@@ -7,18 +7,22 @@ from dotenv import load_dotenv
 
 
 def conectToDB(reset=False):
-    return 'conn', 'MeinCursor'
-    
     load_dotenv()
+    timeout = 10
     conn = mysql.connector.connect(
+        charset="utf8mb4",
+        connect_timeout=timeout,
         db="konstanty",
-        host=os.environ.get('HOST'),
-        password=os.environ.get('PASSWORD'),
-
+        host=os.environ['HOST_FRAN'],
+        password=os.environ['PASSWORD_FRAN'],
+        read_timeout=timeout,
         port=22681,
         user="avnadmin",
+        write_timeout=timeout,
         
     )
+
+
 
     MeinCursor = conn.cursor()
 
@@ -44,9 +48,10 @@ def conectToDB(reset=False):
     return conn, MeinCursor
 
 
+
+
 def addRow(MeinCursor, conn, name, znalost_PI, znalost_E, znalost_FI, IP):
-    pass
-    return
+
     now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     MeinCursor.execute("""
