@@ -16,9 +16,7 @@ def conectToDB(reset=False):
         host=os.environ['HOST_FRAN'],
         password=os.environ['PASSWORD_FRAN'],
         port=22681,
-        user="avnadmin",
-        write_timeout=timeout,
-        
+        user="avnadmin"        
     )
 
 
