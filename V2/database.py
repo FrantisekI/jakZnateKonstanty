@@ -28,7 +28,7 @@ def conectToDB(reset=False):
         conn.commit()
     
 
-    MeinCursor.execute("CREATE DATABASE IF NOT EXISTS konstanty;")
+    MeinCursor.execute("CREATE DATABASE IF NOT EXISTS konstanty.konstanty;")
     MeinCursor.execute(
         """
         CREATE TABLE IF NOT EXISTS konstantyTable (
