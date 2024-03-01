@@ -7,20 +7,21 @@ from dotenv import load_dotenv
 
 
 def conectToDB(reset=False):
-    bob = os.environ['HOST_FRAN']
-    obo = os.environ['PASSWORD_FRAN']
+    host = os.environ['HOST_FRAN']
+    password = os.environ['PASSWORD_FRAN']
     
     timeout = 10
-    print(HEYY)
+    
     conn = mysql.connector.connect(
         charset="utf8mb4",
         connect_timeout=timeout,
         db="konstanty",
-        host=os.environ['HOST_FRAN'],
-        password=os.environ['PASSWORD_FRAN'],
+        host=host,
+        password=password,
         port=22681,
         user="avnadmin"        
     )
+    print(HEYY)
     
 
 
