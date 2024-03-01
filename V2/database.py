@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 
 def conectToDB(reset=False):
-    #load_dotenv()
+    load_dotenv()
     conn = mysql.connector.connect(
         db="konstanty",
         host=os.environ.get('HOST'),
@@ -21,11 +21,11 @@ def conectToDB(reset=False):
     MeinCursor = conn.cursor()
 
     if reset:
-        MeinCursor.execute("DROP DATABASE IF EXISTS konstanty")
+        MeinCursor.execute("DROP DATABASE IF EXISTS konstanty;")
         conn.commit()
     
 
-    MeinCursor.execute("CREATE DATABASE IF NOT EXISTS konstanty")
+    MeinCursor.execute("CREATE DATABASE IF NOT EXISTS konstanty;")
     MeinCursor.execute(
         """
         CREATE TABLE IF NOT EXISTS konstantyTable (
@@ -52,12 +52,10 @@ def addRow(MeinCursor, conn, name, znalost_PI, znalost_E, znalost_FI, IP):
             (%s, %s, %s, %s, %s, %s);
         
     """, (now, name, znalost_PI, znalost_E, znalost_FI, IP))
-
-
     conn.commit()
 
 def getRows(MeinCursor):
-    MeinCursor.execute("SELECT * FROM konstantyTable")
+    MeinCursor.execute("SELECT * FROM konstantyTable;")
     allData = MeinCursor.fetchall()
     print(allData)
     return allData
@@ -66,7 +64,7 @@ if __name__ == "__main__":
     conn, MeinCursor = conectToDB()
     
     #addRow(MeinCursor, conn, 'jmeno', 1, 2, 3, 'IP')
-    getRows(MeinCursor, conn)
+    getRows(MeinCursor)
 
 
 

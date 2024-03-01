@@ -22,7 +22,7 @@ def index():
 def konstanty(jakSeJmenuje='Anonym', Placeholder_Pi=0, piNaCoZna='3,', Placeholder_E=0, eNaCoZna='2,', Placeholder_Fi=0, fiNaCoZna='1,'):
     global GpiNaCoZna, GPlaceholder_Pi, GeNaCoZna, GPlaceholder_E, GfiNaCoZna, GPlaceholder_Fi, Gjmeno
     if request.method == 'POST':
-        jakSeJmenuje = request.form.get('jmeno')
+        jakSeJmenuje = request.form.get('placeholderJmeno')
         Placeholder_Pi = request.form.get('znalost_PI')
         piNaCoZna, Placeholder_Pi = get_pi(Placeholder_Pi)
         
@@ -33,11 +33,11 @@ def konstanty(jakSeJmenuje='Anonym', Placeholder_Pi=0, piNaCoZna='3,', Placehold
         fiNaCoZna, Placeholder_Fi = get_fi(Placeholder_Fi)
 
         GpiNaCoZna = piNaCoZna
-        GPlaceholder_Pi = Placeholder_Pi
+        GPlaceholder_Pi = int(Placeholder_Pi)
         GeNaCoZna = eNaCoZna
-        GPlaceholder_E = Placeholder_E
+        GPlaceholder_E = int(Placeholder_E)
         GfiNaCoZna = fiNaCoZna
-        GPlaceholder_Fi = Placeholder_Fi
+        GPlaceholder_Fi = int(Placeholder_Fi)
         Gjmeno = jakSeJmenuje[:250]
 
 
