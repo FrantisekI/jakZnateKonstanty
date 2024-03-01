@@ -15,7 +15,6 @@ def conectToDB(reset=False):
         db="konstanty",
         host=os.environ['HOST_FRAN'],
         password=os.environ['PASSWORD_FRAN'],
-        read_timeout=timeout,
         port=22681,
         user="avnadmin",
         write_timeout=timeout,
