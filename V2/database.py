@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 
 def conectToDB(reset=False):
+    bob = os.environ['HOST_FRAN']
     print(HOLA)
     timeout = 10
     conn = mysql.connector.connect(
