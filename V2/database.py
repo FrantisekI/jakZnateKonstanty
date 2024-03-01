@@ -17,7 +17,7 @@ def conectToDB(reset=False):
         connect_timeout=timeout,
         db="konstanty",
         host=host,
-        password='uiuobiob',
+        password=password,
         port=22681,
         user="avnadmin"        
     )
