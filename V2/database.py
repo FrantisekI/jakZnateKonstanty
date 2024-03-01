@@ -7,6 +7,8 @@ from dotenv import load_dotenv
 
 
 def conectToDB(reset=False):
+    return 'conn', 'MeinCursor'
+    
     load_dotenv()
     conn = mysql.connector.connect(
         db="konstanty",
@@ -43,7 +45,8 @@ def conectToDB(reset=False):
 
 
 def addRow(MeinCursor, conn, name, znalost_PI, znalost_E, znalost_FI, IP):
-
+    pass
+    return
     now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     MeinCursor.execute("""
