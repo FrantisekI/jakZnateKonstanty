@@ -10,8 +10,8 @@ def conectToDB(reset=False):
     #load_dotenv()
     conn = mysql.connector.connect(
         db="konstanty",
-        host=os.getenv('HOST'),
-        password=os.getenv('PASSWORD'),
+        host=os.environ.get('HOST'),
+        password=os.environ.get('PASSWORD'),
 
         port=22681,
         user="avnadmin",
