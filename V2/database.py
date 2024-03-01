@@ -42,6 +42,12 @@ def conectToDB(reset=False):
             IP VARCHAR(255)
             );
             """)
+    MeinCursor.execute("""
+        INSERT INTO konstantyTable (cas, jmeno, znalost_PI, znalost_E, znalost_FI, IP)
+        VALUES
+            ('2021-01-01 00:00:00', 'jmeno', 1, 2, 3, 'IP');
+        
+    """)
     conn.commit()
     return conn, MeinCursor
 
