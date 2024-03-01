@@ -18,7 +18,7 @@ def conectToDB(reset=False):
         port=22681,
         user="avnadmin"        
     )
-
+    print(HOLA)
 
 
     MeinCursor = conn.cursor()
