@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 
 def conectToDB(reset=False):
-    print('connecting to db')
+    print(HOLA)
     timeout = 10
     conn = mysql.connector.connect(
         charset="utf8mb4",
@@ -18,7 +18,7 @@ def conectToDB(reset=False):
         port=22681,
         user="avnadmin"        
     )
-    print(HOLA)
+    
 
 
     MeinCursor = conn.cursor()
