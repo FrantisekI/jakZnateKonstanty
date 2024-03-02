@@ -16,6 +16,7 @@ def conectToDB(reset=False):
         user="avnadmin",
         port=22681,
         db="konstanty",
+        charset="utf8mb4",
     )
     
 
