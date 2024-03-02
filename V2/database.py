@@ -12,7 +12,6 @@ def conectToDB(reset=False):
     print(os.environ['PASSWORD_FRAN'])
     timeout = 10
     conn = mysql.connector.connect(
-        charset="utf8mb4",
         connect_timeout=timeout,
         db="konstanty",
         host=os.environ['HOST_FRAN'],
