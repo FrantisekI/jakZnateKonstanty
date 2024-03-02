@@ -15,6 +15,7 @@ def conectToDB(reset=False):
         password=os.environ['PASSWORD_FRAN'],
         user="avnadmin",
         port=22681,
+        db="konstanty",
     )
     
 
