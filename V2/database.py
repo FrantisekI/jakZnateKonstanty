@@ -11,7 +11,7 @@ def conectToDB(reset=False):
     load_dotenv()
     #print(os.environ['PASSWORD_FRAN'])
     conn = mysql.connector.connect(
-        hos=os.environ['HOST_FRAN'],
+        host=os.environ['HOST_FRAN'],
         password=os.environ['PASSWORD_FRAN'],
         user="avnadmin",
         port=22681,
