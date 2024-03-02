@@ -9,15 +9,24 @@ from dotenv import load_dotenv
 def conectToDB(reset=False):
     print('connecting to db')
     load_dotenv()
-    #print(os.environ['PASSWORD_FRAN'])
+    timeout = 10
     conn = mysql.connector.connect(
+        charset="utf8mb4",
+        connect_timeout=timeout,
+        db="konstanty",
         host=os.environ['HOST_FRAN'],
         password=os.environ['PASSWORD_FRAN'],
-        user="avnadmin",
         port=22681,
-        db="konstanty",
-
+        user="avnadmin",
     )
+
+    '''conn = mysql.connector.connect(
+        hos=os.environ['HOST_FRAN'],
+        password=os.environ['PASSWORD_FRAN'],
+
+    )'''
+
+    print(conn)
     
 
 
