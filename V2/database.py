@@ -13,6 +13,7 @@ def conectToDB(reset=False):
     conn = mysql.connector.connect(
         hos=os.environ['HOST_FRAN'],
         password=os.environ['PASSWORD_FRAN'],
+        user="avnadmin",
     )
     
 
