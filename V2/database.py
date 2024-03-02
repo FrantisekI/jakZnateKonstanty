@@ -12,8 +12,7 @@ def conectToDB(reset=False):
     print(os.environ['PASSWORD_FRAN'])
     timeout = 10
     conn = mysql.connector.connect(
-        connect_timeout=timeout,
-        database="konstanty",
+        connection_timeout=timeout,
         host=os.environ['HOST_FRAN'],
         password=os.environ['PASSWORD_FRAN'],
         port=22681,
