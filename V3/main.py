@@ -34,14 +34,14 @@ def konstanty():
 
 @app.route("/submit", methods=['POST'])
 def submit():
-    global Gconn, GMeinCursor, Gip
+    global Gconn, GMeinCursor
     #addRow(GMeinCursor, Gconn, Gjmeno, GPlaceholder_Pi, GPlaceholder_E, GPlaceholder_Fi, Gip)
 
     data = request.get_json()
-    print(data)
-    addRow(GMeinCursor, Gconn, data['Gjmeno'], data['pamatovani_Pi'], data['pamatovani_E'], data['pamatovani_Fi'], Gip)
+    print('received data:', data)
+    addRow(GMeinCursor, Gconn, data['Gjmeno'], data['pamatovani_Pi'], data['pamatovani_E'], data['pamatovani_Fi'], data['ipAddress'])
 
-    return dekuji()
+    return '200 OK'
 
 @app.route('/dekuji')
 def dekuji():
@@ -64,8 +64,8 @@ def handleIP():
 
 
 if __name__ == '__main__':
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=8080)
-    #app.run(debug=True, host='0.0.0.0')
+    #from waitress import serve
+    #serve(app, host="0.0.0.0", port=8080)
+    app.run(debug=True, host='0.0.0.0')
     
 

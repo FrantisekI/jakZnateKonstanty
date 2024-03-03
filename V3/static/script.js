@@ -1,5 +1,6 @@
 /* Add "https://api.ipify.org?format=json" to 
         get the IP Address of user*/
+let ipAddress;
 $(document).ready(() => {
     $.getJSON("https://api.ipify.org?format=json",
         function (data) {
@@ -9,6 +10,7 @@ $(document).ready(() => {
 
             const ip = data.ip;
             //const url = `/api/ip?${ip}`;
+            ipAddress = ip;
             fetch('/api/ip', {
                 method: "POST",
                 headers: {
@@ -49,12 +51,12 @@ function getConst(konstanta) {
     const field = document.getElementById(konstanta);
     const hodnotaKonstanty = document.getElementById(konstanta + '_hodnota');
     const text = document.getElementById(konstanta + '_text');
-    
+
     let kolikzna = String(field.value);
 
     if (kolikzna.includes('e')) {
         kolikzna = kolikzna.substring(0, kolikzna.indexOf('e'));
-    }else if (kolikzna === '') {
+    } else if (kolikzna === '') {
         kolikzna = '0';
     }
     const kolikJeMezer = parseInt(kolikzna) / 10;
@@ -82,18 +84,18 @@ function submit() {
     const zprava = document.getElementById('zprava');
     const Gjmeno = jakSeJmenuje.substring(0, 250);
     zprava.innerHTML = 'Děkuji za vyplnění dotazníku!';
-    
-    const data = {
+
+    const udaje = {
         Gjmeno,
         pamatovani_Pi,
         pamatovani_E,
-        pamatovani_Fi
+        pamatovani_Fi,
+        ipAddress
     };
 
-    dataJson = JSON.stringify(data);
+    dataJson = JSON.stringify(udaje);
     console.log('data:', dataJson);
-    //const url = `/submit?${dataJson}`;
-
+    
     fetch('/submit', {
         method: 'POST',
         headers: {
@@ -111,19 +113,56 @@ function submit() {
             console.log('error při odesílání, ale nějak to funguje => nebudeme to řešit')
             // Handle the error here, e.g., display an error message to the user
         });
-        window.location.href = '/dekuji';
+    window.location.href = '/dekuji';
 
-    /*fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        .then((r) => r.json()).catch((error) => {
-            console.error("Error sending IP address:", error);
-            // Handle the error here, e.g., display an error message to the user
-        });*/
+        /**$(document).ready(() => {
+        $.getJSON("https://api.ipify.org?format=json",
+            function (data) {
+                const ip = data.ip;
+
+                fetch('/submit', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        Gjmeno,
+                        pamatovani_Pi,
+                        pamatovani_E,
+                        pamatovani_Fi,
+                        ip
+                    }),
+                })
+                    .then((response) => response.json())
+                    .then((result) => {
+                        console.log('Data submitted successfully:', result);
+                        // Handle the result here, e.g., display a success message to the user
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                        console.log('hioooooooooooooooooooooooooooooooooooooooooooooooooool');
+                    })
+                    .catch((error) => {
+                        //console.error('Error submitting data my:', error);
+                        console.log('error při odesílání, ale nějak to funguje => nebudeme to řešit')
+                        // Handle the error here, e.g., display an error message to the user
+                    });
+            })
+    });
+
+ */
+
 }
 
 
