@@ -69,6 +69,14 @@ def getRows(MeinCursor):
     print(allData)
     return allData
 
+def addRowIFnotExist(MeinCursor, conn, IP):
+    MeinCursor.execute("SELECT * FROM konstantyTable WHERE IP = %s;", (IP,))
+    allData = MeinCursor.fetchall()
+    if len(allData) == 0:
+        addRow(MeinCursor, conn, 'just saving IP', 0, 0, 0, IP)
+    else:
+        print('IP already exists')
+
 if __name__ == "__main__":
     conn, MeinCursor = conectToDB()
     

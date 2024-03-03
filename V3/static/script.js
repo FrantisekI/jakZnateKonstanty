@@ -8,8 +8,8 @@ $(document).ready(() => {
             //$("#gfg").html(data.ip);
 
             const ip = data.ip;
-            const url = `/api/ip?${ip}`;
-            fetch(url, {
+            //const url = `/api/ip?${ip}`;
+            fetch('/api/ip', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -48,9 +48,16 @@ function getConst(konstanta) {
     }
     const field = document.getElementById(konstanta);
     const hodnotaKonstanty = document.getElementById(konstanta + '_hodnota');
-    const kolikzna = field.value;
-    const kolikJeMezer = parseInt(kolikzna) / 10;
+    const text = document.getElementById(konstanta + '_text');
+    
+    let kolikzna = String(field.value);
 
+    if (kolikzna.includes('e')) {
+        kolikzna = kolikzna.substring(0, kolikzna.indexOf('e'));
+    }else if (kolikzna === '') {
+        kolikzna = '0';
+    }
+    const kolikJeMezer = parseInt(kolikzna) / 10;
     let ConNaCoZna = cislo.slice(0, parseInt(kolikzna) + 2 + parseInt(kolikJeMezer));
 
     if (parseInt(kolikzna) > 1000) {
@@ -59,7 +66,9 @@ function getConst(konstanta) {
         ConNaCoZna = "takhle paměť opravu nefunguje :|";
     }
 
+    field.value = kolikzna;
     hodnotaKonstanty.innerHTML = ConNaCoZna;
+    text.style.visibility = 'visible';
 }
 
 
@@ -73,6 +82,7 @@ function submit() {
     const zprava = document.getElementById('zprava');
     const Gjmeno = jakSeJmenuje.substring(0, 250);
     zprava.innerHTML = 'Děkuji za vyplnění dotazníku!';
+    
     const data = {
         Gjmeno,
         pamatovani_Pi,
@@ -82,9 +92,9 @@ function submit() {
 
     dataJson = JSON.stringify(data);
     console.log('data:', dataJson);
-    const url = `/submit?${dataJson}`;
+    //const url = `/submit?${dataJson}`;
 
-    fetch(url, {
+    fetch('/submit', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -101,7 +111,7 @@ function submit() {
             console.log('error při odesílání, ale nějak to funguje => nebudeme to řešit')
             // Handle the error here, e.g., display an error message to the user
         });
-
+        window.location.href = '/dekuji';
 
     /*fetch(url, {
         method: 'POST',

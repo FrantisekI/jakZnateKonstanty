@@ -16,35 +16,53 @@
     <p><input id="jmeno" class="input" type="text" name="placeholderJmeno" value="Anonym" /></p>
 
     <h2>Na kolik desetiných míst znáš π?</h2>
+    <div class="textcontainer"><p class="text">
+        neboli Ludolfovo číslo máte určitě všichni spojené s výpočty kužnic v geometrii, 
+        pokud byste si chtěli si ho jednodušeji pamatovat na více desetinných míst můžu 
+        dopotučit například zlomek 355/113 který je přesný na 6 desetinných míst a pokud 
+        ho píšete od spodu, tak to je 113355
+
+    </p></div>
     <p>
         <button class="btnNumber" onclick="decrementValue('pi')">-</button>
         <input id="pi" class="input" type="number" value="0" />
         <button class="btnNumber" onclick="incrementValue('pi')">+</button>
     </p>
     <p><input class="btnCislo" onclick="getConst('pi')" type="submit" value="ukázat hodnotu"></p>
-    <p>to znamená, že si pamatuješ:</p>
+    <p id="pi_text" class="toZeSiPamatuje">to znamená, že si pamatuješ:</p>
     <p id="pi_hodnota" value="3,"></p>
 
 
     <h2>Na kolik desetiných míst znáš e?</h2>
+    <div class="textcontainer"><p class="text">
+        Eulorovo číslo je definováno limitou (1+1/n)^n pro n jdoucí k nekonečnu,
+        a má spoustu zajímavých vlastností, například je součásti známé rovnice: e^(iπ) + 1 = 0	
+        krom prvního desetinného místa se čtveřice dalších desetinných míst dvakrát opakuje
+    </p></div>
     <p>
         <button class="btnNumber" onclick="decrementValue('e')">-</button>
         <input id="e" class="input" type="number" value="0" />
         <button class="btnNumber" onclick="incrementValue('e')">+</button>
     </p>
     <p><input class="btnCislo" onclick="getConst('e')" type="submit" value="ukázat hodnotu"></p>
-    <p>to znamená, že si pamatuješ:</p>
+    <p id="e_text" class="toZeSiPamatuje">to znamená, že si pamatuješ:</p>
     <p id="e_hodnota" value="2,"></p>
 
 
     <h2>Na kolik desetiných míst znáš zlatý řez (ϕ)?</h2>
+    <div class="textcontainer"><p class="text">
+        zlatý řez, zlatý poměr, božská konstanta, a mnoho dalších označují tuto konstantu
+        lze definovat jako rozdělení úsečky na dvě části tak, aby poměr celku k větší části byl stejný jako poměr větší části k menší části
+        a vypočítá se: (1+√5)/2 je to poměr, který našemu oku připadá nejhezčí, používá se v malířství, architektuře a samozřejmě v přírodě
+        také fibonnaciho posloupnost konverguje k tomuto číslu
+    </p></div>
     <p>
         <button class="btnNumber" onclick="decrementValue('fi')">-</button>
         <input id="fi" class="input" type="number" value="0" />
         <button class="btnNumber" onclick="incrementValue('fi')">+</button>
     </p>
     <p><input class="btnCislo" onclick="getConst('fi')" type="submit" value="ukázat hodnotu"></p>
-    <p>to znamená, že si pamatuješ:</p>
+    <p id="fi_text" class="toZeSiPamatuje">to znamená, že si pamatuješ:</p>
     <p id="fi_hodnota" value="3,"></p>
 
 
